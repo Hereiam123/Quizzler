@@ -52,8 +52,14 @@ class ViewController: UIViewController {
             questionLabel.text = allQuestion.list[questionNumber].questionText
         }
         else{
-            print("End of quiz")
-            questionNumber = 0
+            let alert = UIAlertController(title: "Thank you, but you've reached the end", message: "You've finished the quiz, do you want to start over?", preferredStyle: .alert)
+            
+            let restartAction = UIAlertAction(title: "Restart", style: .default, handler: { (UIAlertAction) in
+                self.startOver()
+            })
+            
+            alert.addAction(restartAction)
+            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -71,7 +77,9 @@ class ViewController: UIViewController {
     
     
     func startOver() {
-       
+       questionNumber = 0
+       let firstQuestion = allQuestion.list[0]
+       questionLabel.text = firstQuestion.questionText
     }
     
 
